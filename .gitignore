@@ -1,0 +1,9 @@
+# Dir
+
+.vs/
+/out
+
+# File 
+
+*.user
+
