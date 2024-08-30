@@ -3,6 +3,7 @@
 
 // For use by Haru application
 #include "Haru/Application.h"
+#include "Haru/Layer.h"
 #include "Haru/Log.h"
 
 //------------Entry Point----------------------
