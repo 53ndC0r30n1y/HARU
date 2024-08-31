@@ -69,7 +69,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Dist")
     )
 endif()
 
-# 拷贝 DLL 文件到可执行文件目录
+# Copy DLL file to executable file directory
 #add_custom_command(TARGET Xen POST_BUILD
 #    COMMAND ${CMAKE_COMMAND} -E copy_if_different
 #    ${CMAKE_CURRENT_BINARY_DIR}/../Haru/bin/Haru.dll

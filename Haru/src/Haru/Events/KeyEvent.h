@@ -1,10 +1,28 @@
+/*
+===========================================================================
+ @author  : Merely Reed
+ @date    : 2024-08-31 13:53
+ @file    : KeyEvent.h
+ @brief   :
+===========================================================================
+*/
+
 #ifndef KEYEVENT_H
 #define KEYEVENT_H
 
 #include "Event.h"
+/***********************************************************************
+
+  Key Event
+
+***********************************************************************/
 
 namespace Haru {
-
+/*
+============================================================================
+  KeyEvent
+============================================================================
+*/
 class HARU_API KeyEvent : public Event {
  public:
   inline int GetKeyCode() const { return m_KeyCode; }
@@ -13,7 +31,11 @@ class HARU_API KeyEvent : public Event {
   KeyEvent(int keycode) : m_KeyCode(keycode) {}
   int m_KeyCode;
 };
-
+/*
+============================================================================
+  KeyPressedEvent
+============================================================================
+*/
 class HARU_API KeyPressedEvent : public KeyEvent {
  public:
   KeyPressedEvent(int keycode, int repeatCount)
@@ -29,7 +51,11 @@ class HARU_API KeyPressedEvent : public KeyEvent {
  private:
   int m_RepeatCount;
 };
-
+/*
+============================================================================
+  KeyReleasedEvent
+============================================================================
+*/
 class HARU_API KeyReleasedEvent : public KeyEvent {
  public:
   KeyReleasedEvent(int keycode) : KeyEvent(keycode) {}

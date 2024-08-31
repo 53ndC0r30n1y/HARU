@@ -1,11 +1,27 @@
+/*
+===========================================================================
+ @author  : Merely Reed
+ @date    : 2024-08-31 13:53
+ @file    : Event.h
+ @brief   :
+===========================================================================
+*/
+
 #ifndef EVENT_H
 #define EVENT_H
 
 #include "Haru/Core.h"
 #include "Harupch.h"
 
-// Events in Haru are currently blocking
+/***********************************************************************
+
+  Event
+
+***********************************************************************/
+
 namespace Haru {
+
+// Event type enum
 enum class EventType {
   None = 0,
   WindowClose,
@@ -23,6 +39,8 @@ enum class EventType {
   MouseMoved,
   MouseScrolled
 };
+
+//@brief Event Category, BIT(x) is (1 << x)
 enum EventCategory {
   None = 0,
   EventCategoryApplication = BIT(0),
@@ -32,46 +50,55 @@ enum EventCategory {
   EventCategoryMouseButton = BIT(4)
 };
 
-#define EVENT_CLASS_TYPE(type)                                                \
-  static EventType GetStaticType() { return EventType::##type; }              \
-  virtual EventType GetEventType() const override { return GetStaticType(); } \
-  virtual const char* GetName() const override { return #type; }
-#define EVENT_CLASS_CATEGORY(category) \
+#define EVENT_CLASS_TYPE(type)                                                 \
+  static EventType GetStaticType() { return EventType::##type; }               \
+  virtual EventType GetEventType() const override { return GetStaticType(); }  \
+  virtual const char *GetName() const override { return #type; }
+#define EVENT_CLASS_CATEGORY(category)                                         \
   virtual int GetCategoryFlags() const override { return category; }
 
+/*
+============================================================================
+  Event
+============================================================================
+*/
 class HARU_API Event {
- public:
-  bool Handled = false;
+public:
+  bool Handled = false; // processed or not
 
   virtual EventType GetEventType() const = 0;
-  virtual const char* GetName() const = 0;
+  virtual const char *GetName() const = 0;
   virtual int GetCategoryFlags() const = 0;
   virtual std::string ToString() const { return GetName(); }
   inline bool IsInCategory(EventCategory category) {
     return GetCategoryFlags() & category;
-  }  
+  }
 };
-class EventDispatcher {
-  template <typename T>
-  using EventFn = std::function<bool(T&)>;
 
- public:
-  EventDispatcher(Event& event) : m_Event(event) {}
-  template <typename T>
-  bool Dispatch(EventFn<T> func) {
+/*
+============================================================================
+  EventDispatcher
+============================================================================
+*/
+class EventDispatcher {
+  template <typename T> using EventFn = std::function<bool(T &)>;
+
+public:
+  EventDispatcher(Event &event) : m_Event(event) {}
+  template <typename T> bool Dispatch(EventFn<T> func) {
     if (m_Event.GetEventType() == T::GetStaticType()) {
-      m_Event.Handled = func(*(T*)&m_Event);
+      m_Event.Handled = func(*(T *)&m_Event);
       return true;
     }
     return false;
   }
 
- private:
-  Event& m_Event;
+private:
+  Event &m_Event;
 };
-inline std::ostream& operator<<(std::ostream& os, const Event& e) {
+inline std::ostream &operator<<(std::ostream &os, const Event &e) {
   return os << e;
 }
-}  // namespace Haru
+} // namespace Haru
 
-#endif  // !EVENT_H
+#endif // !EVENT_H

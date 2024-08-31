@@ -1,10 +1,31 @@
+/*
+===========================================================================
+ @author  : Merely Reed
+ @date    : 2024-08-31 13:53
+ @file    : Windowswindow.h
+ @brief   :
+===========================================================================
+*/
+
 #ifndef WINDOWSWINDOW_H
 #define WINDOWSWINDOW_H
 
 #include "Haru/Window.h"
 // #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
 namespace Haru {
+/***********************************************************************
+
+  Windows Window
+
+***********************************************************************/
+
+/*
+============================================================================
+  Windowswindow
+============================================================================
+*/
 class WindowsWindow : public Window {
  public:
   WindowsWindow(const WindowProps& props);
@@ -31,6 +52,7 @@ class WindowsWindow : public Window {
     bool VSync;
     EventCallbackFn EventCallback;
   };
+  //Window data
   WindowData m_Data;
 };
 }  // namespace Haru

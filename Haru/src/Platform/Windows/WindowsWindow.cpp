@@ -1,3 +1,12 @@
+/*
+===========================================================================
+ @author  : Merely Reed
+ @date    : 2024-08-31 13:53
+ @file    : Windowswindow.cpp
+ @brief   :
+===========================================================================
+*/
+
 #include "WindowsWindow.h"
 
 #include "Haru/Events/ApplicationEvent.h"
@@ -6,18 +15,41 @@
 #include "Harupch.h"
 
 namespace Haru {
+/***********************************************************************
+
+  Windowswindow
+
+***********************************************************************/
 
 static bool s_GLFWInitialized = false;
 
 static void GLFWErrorCallback(int error, const char* description) {
   HARU_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 }
-
+/*
+============================================================================
+  Window::Create
+============================================================================
+*/
 Window* Window::Create(const WindowProps& props) {
   return new WindowsWindow(props);
-}
+} /*
+============================================================================
+  Windowswindow::Windowswindow
+============================================================================
+ */
 WindowsWindow::WindowsWindow(const WindowProps& props) { Init(props); }
+/*
+============================================================================
+  Windowswindow::~Windowswindow
+============================================================================
+*/
 WindowsWindow::~WindowsWindow() { Shutdown(); }
+/*
+============================================================================
+  Windowswindow::Init
+============================================================================
+*/
 void WindowsWindow::Init(const WindowProps& props) {
   m_Data.Title = props.Title;
   m_Data.Width = props.Width;
@@ -112,12 +144,26 @@ void WindowsWindow::Init(const WindowProps& props) {
         data.EventCallback(event);
       });
 }
-
+/*
+============================================================================
+  Windowswindow::Shutdown
+============================================================================
+*/
 void WindowsWindow::Shutdown() { glfwDestroyWindow(m_Window); }
+/*
+============================================================================
+  Windowswindow::OnUpdate
+============================================================================
+*/
 void WindowsWindow::OnUpdate() {
   glfwPollEvents();
   glfwSwapBuffers(m_Window);
 }
+/*
+============================================================================
+  Windowswindow::SetSync
+============================================================================
+*/
 void WindowsWindow::SetVSync(bool enabled) {
   if (enabled)
     glfwSwapInterval(1);
@@ -125,5 +171,10 @@ void WindowsWindow::SetVSync(bool enabled) {
     glfwSwapInterval(0);
   m_Data.VSync = enabled;
 }
+/*
+============================================================================
+  Windowswindow::IsSynac
+============================================================================
+*/
 bool WindowsWindow::IsVSync() const { return m_Data.VSync; }
 }  // namespace Haru

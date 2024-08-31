@@ -20,7 +20,7 @@ set(CMAKE_GENERATOR_PLATFORM x64)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 
-# 包含子项目。
+# child project
 add_subdirectory ("Haru")
 add_subdirectory ("Xen")
 
