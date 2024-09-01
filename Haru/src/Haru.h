@@ -19,8 +19,9 @@
 #include "Haru/Layer.h"
 #include "Haru/Log.h"
 
+#include "Haru/ImGui/ImGuiLayer.h"
 //------------Entry Point----------------------
 #include "Haru/EntryPoint.h"
 //------------------------------
 
-#endif  // !HARU_H
+#endif // !HARU_H

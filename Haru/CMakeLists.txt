@@ -53,7 +53,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${IncludeDir_GLFW}
     ${IncludeDir_GLAD}
     # ${IncludeDir_glm}    
-    # ${IncludeDir_ImGui}    
+    ${IncludeDir_ImGui}    
     # ${IncludeDir_Box2D}
     # ${IncludeDir_filewatch}
     # ${IncludeDir_stb_image}
@@ -71,7 +71,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 #    box2d
      ${Library_GLFW}
      GLAD
-#    imgui
+     ImGui
 #    yaml-cpp
      opengl32.lib
 #    # ${Library_mono}

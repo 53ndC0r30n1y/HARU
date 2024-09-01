@@ -24,7 +24,9 @@ public:
 
 class SandBox : public Haru::Application {
  public:
-  SandBox() { PushLayer(new ExampleLayer());
+  SandBox() { 
+    PushLayer(new ExampleLayer());
+    PushOverlay(new Haru::ImGuiLayer());
   }
 
   ~SandBox() {}
