@@ -29,7 +29,7 @@ namespace Haru {
 ============================================================================
 */
 Application::Application() {
-  m_Window = std::unique_ptr<Window>(Window::Create());  // 创建窗口
+  m_Window = std::unique_ptr<Window>(Window::Create()); // 创建窗口
   // Window init call back function
   m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 }
@@ -44,7 +44,7 @@ Application::~Application() {}
   Application::PushLayer
 ============================================================================
 */
-void Application::PushLayer(Layer *layer){ m_LayerStack.PushLayer(layer);}
+void Application::PushLayer(Layer *layer) { m_LayerStack.PushLayer(layer); }
 /*
 ============================================================================
   Application::PushOverlay
@@ -56,11 +56,11 @@ void Application::PushOverlay(Layer *layer) { m_LayerStack.PushOverlay(layer); }
   Application::OnEvent
 ============================================================================
 */
-void Application::OnEvent(Event& e) {
-  EventDispatcher dispatcher(e);
+void Application::OnEvent(Event &e) { // EventHandler
+  EventDispatcher dispatcher(e);      // EventListener,Observer of Observe Pattern 
   dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-  for(auto it = m_LayerStack.end();it != m_LayerStack.begin();){
+  for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
     (*--it)->OnEvent(e);
     if (e.Handled)
       break;
@@ -79,7 +79,7 @@ void Application::Run() {
     for (Layer *layer : m_LayerStack)
       layer->OnUpdate();
 
-    m_Window->OnUpdate();  // update glfw
+    m_Window->OnUpdate(); // update glfw
   }
 }
 /*
@@ -87,8 +87,8 @@ void Application::Run() {
   Application::OnWindowClose
 ============================================================================
 */
-bool Application::OnWindowClose(WindowCloseEvent& e) {
+bool Application::OnWindowClose(WindowCloseEvent &e) {
   m_Running = false;
   return true;
 }
-}  // namespace Haru
+} // namespace Haru

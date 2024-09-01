@@ -14,7 +14,6 @@
 #include "Haru/Events/Event.h"
 #include "Harupch.h"
 
-
 namespace Haru {
 /***********************************************************************
 
@@ -34,8 +33,8 @@ class HARU_API Window {
 public:
   // call back function
   using EventCallbackFn = std::function<void(Event &)>;
-  virtual ~Window() {}
-  virtual void OnUpdate() = 0;
+  virtual ~Window() {}         // virtual
+  virtual void OnUpdate() = 0; // pure virtual
   virtual unsigned int GetWidth() const = 0;
   virtual unsigned int GetHeight() const = 0;
 
@@ -44,7 +43,7 @@ public:
   virtual void SetVSync(bool enabled) = 0;
   virtual bool IsVSync() const = 0;
 
-  // TODO: Factroy Design ?
+  // static calss share by eyery child class
   static Window *Create(const WindowProps &props = WindowProps());
 };
 } // namespace Haru
