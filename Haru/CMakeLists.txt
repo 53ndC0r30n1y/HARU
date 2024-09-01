@@ -43,19 +43,19 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     HARU_PLATFORM_WINDOWS
     HARU_BUILD_DLL 
     _CRT_SECURE_NO_WARNINGS
-    #GLFW_INCLUDE_NONE
+    GLFW_INCLUDE_NONE
 )
 
 # include path
 target_include_directories(${PROJECT_NAME} PRIVATE
     src
     ${IncludeDir_spdlog}
+    ${IncludeDir_GLFW}
+    ${IncludeDir_GLAD}
+    # ${IncludeDir_glm}    
+    # ${IncludeDir_ImGui}    
     # ${IncludeDir_Box2D}
     # ${IncludeDir_filewatch}
-    ${IncludeDir_GLFW}
-    # ${IncludeDir_Glad}
-    # ${IncludeDir_ImGui}
-    # ${IncludeDir_glm}
     # ${IncludeDir_stb_image}
     # ${IncludeDir_entt}
     # ${IncludeDir_mono}
@@ -70,7 +70,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 target_link_libraries(${PROJECT_NAME} PRIVATE
 #    box2d
      ${Library_GLFW}
-#    glad
+     GLAD
 #    imgui
 #    yaml-cpp
      opengl32.lib

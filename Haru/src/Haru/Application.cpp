@@ -14,7 +14,7 @@
 
 // #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
+#include <glad/glad.h> //need macro GLFW_INCLUDE_NONE
 /***********************************************************************
 
   Application

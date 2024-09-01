@@ -19,8 +19,19 @@ set(CMAKE_GENERATOR_PLATFORM x64)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+# Dependencies
+#add_subdirectory(Haru/thirdParty/Box2D)
+#add_subdirectory(Haru/thirdParty/GLFW)
+add_subdirectory(Haru/thirdParty/GLAD)
+#add_subdirectory(Haru/thirdParty/ImGui)
+#add_subdirectory(Haru/thirdParty/yaml-cpp)
 
-# child project
-add_subdirectory ("Haru")
-add_subdirectory ("Xen")
 
+# Core
+add_subdirectory(Haru)
+
+# Tools
+# add_subdirectory()
+
+# Misc
+add_subdirectory(Xen)
