@@ -12,6 +12,9 @@
 
 #include "Haru/Layer.h"
 
+#include "Haru/Events/ApplicationEvent.h"
+#include "Haru/Events/KeyEvent.h"
+#include "Haru/Events/MouseEvent.h"
 namespace Haru{
 /***********************************************************************
 
@@ -29,6 +32,15 @@ public:
   void OnEvent(Event& event);
 
 private:
+  bool OnMouseButtonPressedEvent(MouseButtonPressedEvent &e);
+  bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent &e);
+  bool OnMouseMovedEvent(MouseMovedEvent &e);
+  bool OnMouseScrolledEvent(MouseScrolledEvent &e);
+  bool OnKeyPressedEvent(KeyPressedEvent &e);
+  bool OnKeyReleasedEvent(KeyReleasedEvent &e);
+  bool OnKeyTypedEvent(KeyTypedEvent &e);
+  bool OnWindowResizeEvent(WindowResizeEvent &e);
+
   float m_Time = 0.0f;
 };
 
