@@ -17,9 +17,17 @@ class ExampleLayer : public Haru::Layer {
 public:
   ExampleLayer(): Layer("Example") { }
 
-  void OnUpdate() override { HARU_INFO("ExampleLayer::Update"); }
+  void OnUpdate() override {
+    if (Haru::Input::IsKeyPressed(HARU_KEY_TAB)) HARU_TRACE("Tab key is pressed (poll)!");
+  }
 
-  void OnEvent(Haru::Event &event) override { HARU_TRACE("{0}", event.ToString()); }
+  void OnEvent(Haru::Event &event) override {
+    if (event.GetEventType() == Haru::EventType::KeyPressed) {
+      Haru::KeyPressedEvent &e = (Haru::KeyPressedEvent &)event;
+      if (e.GetKeyCode() == HARU_KEY_TAB) HARU_TRACE("Tab key is pressed (event)!");
+      HARU_TRACE("{0}", (char)e.GetKeyCode());
+    }
+  }
 };
 
 class SandBox : public Haru::Application {

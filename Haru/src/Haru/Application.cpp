@@ -7,14 +7,16 @@
 ===========================================================================
 */
 
-#include "Application.h"
+#include "Haru/Application.h"
 
 #include "Harupch.h"
-#include "Log.h"
+#include "Haru/Log.h"
 
 // #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glad/glad.h> //need macro GLFW_INCLUDE_NONE
+
+#include "Haru/Input.h"
 /***********************************************************************
 
   Application
