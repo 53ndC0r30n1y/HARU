@@ -30,6 +30,8 @@ public:
   virtual void OnDetach(){};
   // Called by the Application, when a layer is updated,which should happen every frame
   virtual void OnUpdate(){};
+  // ImGui
+  virtual void OnImGuiRender(){};
   // Process event
   virtual void              OnEvent(Event &event) { }
   inline const std::string &GetName() const { return m_DebugName; }

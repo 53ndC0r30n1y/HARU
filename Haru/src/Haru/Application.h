@@ -16,6 +16,7 @@
 #include "Haru/LayerStack.h"
 #include "Haru/Events/Event.h"
 #include "Haru/Events/ApplicationEvent.h"
+#include "Haru/ImGui/ImGuiLayer.h"
 /***********************************************************************
 
   Application
@@ -46,6 +47,7 @@ private:
   bool OnWindowClose(WindowCloseEvent &e);
 
   std::unique_ptr<Window> m_Window;
+  ImGuiLayer             *m_ImGuiLayer;
   bool                    m_Running = true;
   LayerStack              m_LayerStack;
 

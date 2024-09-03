@@ -49,8 +49,8 @@ protected:
   // Vector storing pointers to Layer objects
   std::vector<Layer *> m_Layers;
 
-  // Iterator used for tracking insertion position in m_Layers
-  std::vector<Layer *>::iterator m_LayerInsert;
+  // TODO
+  unsigned int m_LayerInsertIndex = 0;
 };
 } // namespace Haru
 

@@ -20,7 +20,7 @@ AccessModifierOffset: -2 # 不缩进
 # - DontAlign: 不对于开括号, 即换行时使用配置的空格数
 # - AlwaysBreak: 永远换行, 即第一个参数都不允许粘连括号, 会强制换行, 换行后使用配置空格数对齐
 # - BlockIndent: 同AlwaysBreak, 多了一个操作: 如果参数不固定在同一行, 闭括号将在下一行
-AlignAfterOpenBracket: DontAlign
+AlignAfterOpenBracket: AlwaysBreak
  
 # - 结构休数组统一初始化对齐, 建议不配置, 没过多必要, 详见clang-format doc
 # - None: 不做处理, 即保留开发者的代码
@@ -204,7 +204,7 @@ ExperimentalAutoDetectBinPacking: false
 # - BinPack: 两个参数一行
 # - CurrentLine: 所有参数放置于一行, 如果放不下, 就一个参数一行
 # - NextLine: 同CurrentLine有点像, 唯一不同就是如果放不行, 将剩余参数放置于下一行(即不自动一参一行)
-# PackConstructorInitializers: Never
+PackConstructorInitializers: Never
 # # 废弃配置
 # ConstructorInitializerAllOnOneLineOrOnePerLine: false
 # # 废弃配置
@@ -288,22 +288,22 @@ MaxEmptyLinesToKeep: 1
 # Namespace内的对齐, 直接使用None即可, 即所有namespace内(包括内嵌的)都不indent
 NamespaceIndentation: None
 # Obj-C语言设置, 跳过
-# ObjCBinPackProtocolList: Auto
-# ObjCBlockIndentWidth: 4
-# ObjCBreakBeforeNestedBlockParam: true
-# ObjCSpaceAfterProperty: false
-# ObjCSpaceBeforeProtocolList: true
+ObjCBinPackProtocolList: Auto
+ObjCBlockIndentWidth: 4
+ObjCBreakBeforeNestedBlockParam: true
+ObjCSpaceAfterProperty: false
+ObjCSpaceBeforeProtocolList: true
 # 罚分设定(根据你的"违规"值选择罚分少的)
-# PenaltyBreakAssignment: 2
-# PenaltyBreakBeforeFirstCallParameter: 19
-# PenaltyBreakComment: 300
-# PenaltyBreakFirstLessLess: 120
-# PenaltyBreakOpenParenthesis: 0
-# PenaltyBreakString: 1000
-# PenaltyBreakTemplateDeclaration: 10
-# PenaltyExcessCharacter: 1000000
-# PenaltyReturnTypeOnItsOwnLine: 60
-# PenaltyIndentedWhitespace: 0
+PenaltyBreakAssignment: 2
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakComment: 300
+PenaltyBreakFirstLessLess: 120
+PenaltyBreakOpenParenthesis: 0
+PenaltyBreakString: 1000
+PenaltyBreakTemplateDeclaration: 10
+PenaltyExcessCharacter: 1000000
+PenaltyReturnTypeOnItsOwnLine: 60
+PenaltyIndentedWhitespace: 0
 # 指针对齐, 建议Right
 PointerAlignment: Right
 # 引用对齐, 可选:
