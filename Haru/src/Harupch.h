@@ -32,4 +32,4 @@
 #include <Windows.h>
 #endif
 
-#endif  // HARUPCH_H
+#endif // HARUPCH_H

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(ImGui)
 
-add_library(ImGui STATIC 
+add_library(${PROJECT_NAME} STATIC 
   	ImGui/imconfig.h
 	ImGui/imgui.h
 	ImGui/imgui.cpp
@@ -14,5 +14,5 @@ add_library(ImGui STATIC
 	ImGui/imstb_truetype.h
 	ImGui/imgui_demo.cpp
 )
-
-target_include_directories(ImGui PUBLIC ImGui/)
+set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "thirdParty")
+target_include_directories(${PROJECT_NAME} PUBLIC ImGui/)

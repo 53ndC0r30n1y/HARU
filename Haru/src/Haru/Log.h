@@ -37,6 +37,7 @@ public:
   }
 
 private:
+  // read only, no ownership transfer at all 
   static std::shared_ptr<spdlog::logger> s_CoreLogger;
   static std::shared_ptr<spdlog::logger> s_ClientLogger;
 };

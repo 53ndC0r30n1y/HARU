@@ -2,6 +2,14 @@
 
 project (HARU)
 
+option(USE_SOLUTION_FOLDERS "使用资源管理器文件夹" OFF)
+
+# Solution folders
+if(USE_SOLUTION_FOLDERS)
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+  set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "HARU")
+endif()
+
 # static lib
 set(ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib) 
 # dynamic lib
@@ -11,13 +19,10 @@ set(RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 
-
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 include(Dependencies)
 
 set(CMAKE_GENERATOR_PLATFORM x64)
-
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Dependencies
 #add_subdirectory(Haru/thirdParty/Box2D)
@@ -25,7 +30,6 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 add_subdirectory(Haru/thirdParty/GLAD)
 add_subdirectory(Haru/thirdParty/ImGui)
 #add_subdirectory(Haru/thirdParty/yaml-cpp)
-
 
 # Core
 add_subdirectory(Haru)

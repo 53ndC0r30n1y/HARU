@@ -8,7 +8,7 @@
 */
 #ifndef CORE_H
 #define CORE_H
-//Windows
+// Windows
 #ifdef HARU_PLATFORM_WINDOWS
 #if HARU_DYNAMIC_LINK
 #ifdef HARU_BUILD_DLL
@@ -23,30 +23,34 @@
 #error Haru only support Windows!
 #endif
 
-//Asserts for debug
+#if HARU_DEBUG
+#define HARU_ENABLE_ASSERTS
+#endif
+
 #ifdef HARU_ENABLE_ASSERTS
-#define HARU_ASSERT(x, ...)                                                    \
-  {                                                                            \
-    if (!(x)) {                                                                \
-      HARU_ERROR("Assertion Failed: {0}", __VA_ARGS__);                        \
-      __debugbreak();                                                          \
-    }                                                                          \
+#define HARU_ASSERT(x, ...)                                                                                            \
+  {                                                                                                                    \
+    if (!(x)) {                                                                                                        \
+      HARU_ERROR("Assertion Failed: {0}", __VA_ARGS__);                                                                \
+      __debugbreak();                                                                                                  \
+    }                                                                                                                  \
   }
-#define HARU_CORE_ASSERT(x, ...)                                               \
-  {                                                                            \
-    if (!(x)) {                                                                \
-      HARU_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__);                   \
-      __debugbreak();                                                          \
-    }                                                                          \
+#define HARU_CORE_ASSERT(x, ...)                                                                                       \
+  {                                                                                                                    \
+    if (!(x)) {                                                                                                        \
+      HARU_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__);                                                           \
+      __debugbreak();                                                                                                  \
+    }                                                                                                                  \
   }
 #else
 #define HARU_ASSERT(x, ...)
 #define HARU_CORE_ASSERT(x, ...)
 #endif
 
-//for event category
+// for event category
 #define BIT(x) (1 << x)
 
-#define HARU_BIND_EVENT_FN(fn) std::bind(&fn,this,std::placeholders::_1)
+// bind function and param
+#define HARU_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
 #endif

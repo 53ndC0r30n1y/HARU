@@ -28,14 +28,14 @@ public:
   virtual void OnAttach(){};
   // Similar to Shutdown(), when a layer is removed from the layer stack.
   virtual void OnDetach(){};
-  // Render
-  virtual void OnUpdate(){}; 
+  // Called by the Application, when a layer is updated,which should happen every frame
+  virtual void OnUpdate(){};
   // Process event
-  virtual void OnEvent(Event &event) {}
+  virtual void              OnEvent(Event &event) { }
   inline const std::string &GetName() const { return m_DebugName; }
 
 protected:
-  bool isEnabled; // false mean not to render
+  bool        isEnabled; // false mean not to render
   std::string m_DebugName;
 };
 

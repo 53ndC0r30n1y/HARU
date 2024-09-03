@@ -15,7 +15,7 @@ v0.1  : simple test
 
 class ExampleLayer : public Haru::Layer {
 public:
-  ExampleLayer() : Layer("Example") {}
+  ExampleLayer(): Layer("Example") { }
 
   void OnUpdate() override { HARU_INFO("ExampleLayer::Update"); }
 
@@ -23,13 +23,13 @@ public:
 };
 
 class SandBox : public Haru::Application {
- public:
-  SandBox() { 
+public:
+  SandBox() {
     PushLayer(new ExampleLayer());
     PushOverlay(new Haru::ImGuiLayer());
   }
 
-  ~SandBox() {}
+  ~SandBox() { }
 };
 
-Haru::Application* Haru::CreateApplication() { return new SandBox(); }
+Haru::Application *Haru::CreateApplication() { return new SandBox(); }

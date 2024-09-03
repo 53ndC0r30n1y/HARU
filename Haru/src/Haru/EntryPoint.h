@@ -17,9 +17,9 @@
 
 #ifdef HARU_PLATFORM_WINDOWS
 
-extern Haru::Application* Haru::CreateApplication();
+extern Haru::Application *Haru::CreateApplication();
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   Haru::Log::Init();
 
   // General style
@@ -37,4 +37,4 @@ int main(int argc, char** argv) {
 }
 #endif
 
-#endif  // !ENTRYPOINT_H
+#endif // !ENTRYPOINT_H

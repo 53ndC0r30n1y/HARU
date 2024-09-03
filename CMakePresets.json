@@ -5,7 +5,6 @@
       "name": "windows-base",
       "description": "面向具有 Visual Studio 开发环境的 Windows。",
       "hidden": true,
-      "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
       "installDir": "${sourceDir}/out/install/${presetName}",
       "cacheVariables": {
@@ -19,24 +18,52 @@
       }
     },
     {
-      "name": "x64-debug",
-      "displayName": "x64 Debug",
+      "name": "x64-debug-Ninja",
+      "displayName": "x64 Debug Ninja",
       "description": "使用 Visual Studio 开发环境定向到 Windows (64 位)。(Debug)",
+      "generator": "Ninja",
       "inherits": "windows-base",
       "architecture": {
         "value": "x64",
         "strategy": "external"
       },
       "cacheVariables": {
+        "USE_SOLUTION_FOLDERS": "OFF",
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
-      "name": "x64-release",
-      "displayName": "x64 Release",
+      "name": "x64-release-Ninja",
+      "displayName": "x64 Release Ninja",
       "description": "使用 Visual Studio 开发环境定向到 Windows (64 位)。(RelWithDebInfo)",
-      "inherits": "x64-debug",
+      "inherits": "x64-debug-Ninja",
       "cacheVariables": {
+        "USE_SOLUTION_FOLDERS": "OFF",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "x64-debug-VS",
+      "displayName": "x64 Debug VS",
+      "description": "使用 Visual Studio 开发环境定向到 Windows (64 位)。(Debug)",
+      "generator": "Visual Studio 17 2022",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "USE_SOLUTION_FOLDERS": "ON",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "x64-release-VS",
+      "displayName": "x64 Release VS",
+      "description": "使用 Visual Studio 开发环境定向到 Windows (64 位)。(RelWithDebInfo)",
+      "inherits": "x64-debug-VS",
+      "cacheVariables": {
+        "USE_SOLUTION_FOLDERS": "OFF",
         "CMAKE_BUILD_TYPE": "Release"
       }
     }

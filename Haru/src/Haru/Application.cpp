@@ -42,14 +42,14 @@ Application::Application() {
   Application::~Application
 ============================================================================
 */
-Application::~Application() {}
+Application::~Application() { }
 /*
 ============================================================================
   Application::PushLayer
 ============================================================================
 */
-void Application::PushLayer(Layer *layer) { 
-  m_LayerStack.PushLayer(layer); 
+void Application::PushLayer(Layer *layer) {
+  m_LayerStack.PushLayer(layer);
   layer->OnAttach();
 }
 /*
@@ -57,7 +57,7 @@ void Application::PushLayer(Layer *layer) {
   Application::PushOverlay
 ============================================================================
 */
-void Application::PushOverlay(Layer *layer) { 
+void Application::PushOverlay(Layer *layer) {
   m_LayerStack.PushOverlay(layer);
   layer->OnAttach();
 }
@@ -67,13 +67,12 @@ void Application::PushOverlay(Layer *layer) {
 ============================================================================
 */
 void Application::OnEvent(Event &e) { // EventHandler
-  EventDispatcher dispatcher(e);      // EventListener,Observer of Observe Pattern 
+  EventDispatcher dispatcher(e);      // EventListener,Observer of Observe Pattern
   dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
   for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
     (*--it)->OnEvent(e);
-    if (e.Handled)
-      break;
+    if (e.Handled) break;
   }
 }
 /*
