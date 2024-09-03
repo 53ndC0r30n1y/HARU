@@ -22,14 +22,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 file(GLOB_RECURSE ${PROJECT_NAME}_HEADERS
     src/*.h
     # thirdParty/stb_image/*.h
-    # thirdParty/glm/glm/*.hpp
+    thirdParty/GLM/glm/*.hpp
     # thirdParty/ImGuizmo/ImGuizmo.h
 )
 
 file(GLOB_RECURSE ${PROJECT_NAME}_SOURCES
     src/*.cpp
     # thirdParty/stb_image/*.cpp
-    # thirdParty/glm/glm/*.inl
+    thirdParty/GLM/glm/*.inl
     # thirdParty/ImGuizmo/ImGuizmo.cpp
 )
 
@@ -99,7 +99,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${IncludeDir_spdlog}
     ${IncludeDir_GLFW}
     ${IncludeDir_GLAD}
-    # ${IncludeDir_glm}    
+    ${IncludeDir_GLM}    
     ${IncludeDir_ImGui}    
     # ${IncludeDir_Box2D}
     # ${IncludeDir_filewatch}

@@ -74,7 +74,8 @@ endif()
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/Haru/src
     ${IncludeDir_spdlog}
-    
+    ${IncludeDir_ImGui}
+    ${IncludeDir_GLM}
     # ${CMAKE_SOURCE_DIR}/Haru/thirdParty
     # ${CMAKE_SOURCE_DIR}/Haru/thirdParty/imgui
     # ${CMAKE_SOURCE_DIR}/Haru/thirdParty/Glad
