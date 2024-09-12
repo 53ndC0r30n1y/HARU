@@ -32,6 +32,20 @@ void OpenGLContext::Init() {
   glfwMakeContextCurrent(m_WindowHandle);
   int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
   HARU_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+  HARU_CORE_INFO("OpenGL Info:");
+
+  const GLubyte *vendor   = glGetString(GL_VENDOR);
+  const GLubyte *renderer = glGetString(GL_RENDERER);
+  const GLubyte *version  = glGetString(GL_VERSION);
+
+  std::string vendorStr(reinterpret_cast<const char *>(vendor));
+  std::string rendererStr(reinterpret_cast<const char *>(renderer));
+  std::string versionStr(reinterpret_cast<const char *>(version));
+
+  HARU_CORE_INFO("  Vendor: {}", vendorStr);
+  HARU_CORE_INFO("  Renderer: {}", rendererStr);
+  HARU_CORE_INFO("  Version: {}", versionStr);
 }
 /*
 ============================================================================
