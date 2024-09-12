@@ -10,11 +10,10 @@
 #include "Haru/Application.h"
 
 #include "Harupch.h"
-#include "Haru/Log.h"
 
 // #include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include <glad/glad.h> //need macro GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
 
 #include "Haru/Input.h"
 /***********************************************************************
@@ -90,15 +89,19 @@ void Application::Run() {
     // Clear Screen
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    // Update normal layer
     for (Layer *layer : m_LayerStack)
       layer->OnUpdate();
 
+    // begin to reder ImGui
     m_ImGuiLayer->Begin();
     for (Layer *layer : m_LayerStack)
       layer->OnImGuiRender();
-    m_ImGuiLayer->End();
+    m_ImGuiLayer->End(); // render done
 
-    m_Window->OnUpdate(); // update glfw
+    // update window (GLFW)
+    m_Window->OnUpdate();
   }
 }
 /*

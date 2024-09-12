@@ -11,7 +11,8 @@
 #define WINDOWSWINDOW_H
 
 #include "Haru/Window.h"
-// #include <GL/glew.h>
+#include "Haru/Renderer/GraphicsContext.h"
+
 #include <GLFW/glfw3.h>
 
 namespace Haru {
@@ -46,6 +47,7 @@ private:
 
 private:
   GLFWwindow *m_Window;
+  GraphicsContext *m_Context;
   struct WindowData {
     std::string     Title;
     unsigned int    Width, Height;

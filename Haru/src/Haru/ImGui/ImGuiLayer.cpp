@@ -3,7 +3,7 @@
  @author  : Merely Reed
  @date    : 2024-08-31 13:53
  @file    : ImGuiLayer.cpp
- @brief   :
+ @brief   : ImGui layer
 ===========================================================================
 */
 #include "Harupch.h"
@@ -13,8 +13,8 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 #include "Haru/Application.h"
 
@@ -59,8 +59,16 @@ void ImGuiLayer::OnAttach() {
   // Setup Dear ImGui style
   ImGui::StyleColorsDark();
 
-  // dk2 style from ImThemes
+  // custom style from ImThemes
   ImGuiStyle &style = ImGui::GetStyle();
+
+  ImFont *font = io.Fonts->AddFontFromFileTTF(
+    "../../../../../res/font/Alibaba-PuHuiTi-Medium.ttf", // pwd:Xen/bin/
+    22,
+    nullptr,
+    io.Fonts->GetGlyphRangesChineseFull()); // load chinese
+
+  IM_ASSERT(font != nullptr); // 必须判断一下字体有没有加载成功
 
   style.Alpha                     = 1.0f;
   style.DisabledAlpha             = 0.6000000238418579f;
@@ -93,6 +101,12 @@ void ImGuiLayer::OnAttach() {
   style.ButtonTextAlign           = ImVec2(0.5f, 0.5f);
   style.SelectableTextAlign       = ImVec2(0.0f, 0.0f);
   style.TabBarOverlineSize        = 0.0f;
+
+  // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
+  if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+    style.WindowRounding              = 0.0f;
+    style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+  }
 
   style.Colors[ImGuiCol_Text] = ImVec4(0.8588235378265381f, 0.929411768913269f, 0.886274516582489f, 1.0f);
   style.Colors[ImGuiCol_TextDisabled] =
@@ -163,20 +177,6 @@ void ImGuiLayer::OnAttach() {
   style.Colors[ImGuiCol_ModalWindowDimBg] =
     ImVec4(0.800000011920929f, 0.800000011920929f, 0.800000011920929f, 0.3499999940395355f);
 
-  ImFont *font = io.Fonts->AddFontFromFileTTF(
-    "../../../../../res/font/Alibaba-PuHuiTi-Medium.ttf", // pwd:Xen/bin/
-    22,
-    nullptr,
-    io.Fonts->GetGlyphRangesChineseFull()); // 设置加载中文
-
-  IM_ASSERT(font != nullptr); // 必须判断一下字体有没有加载成功
-
-  // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
-  if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-    style.WindowRounding              = 0.0f;
-    style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-  }
-
   Application &app    = Application::Get();
   GLFWwindow  *window = static_cast<GLFWwindow *>(app.GetWindow().GetNativeWindow());
 
@@ -209,7 +209,7 @@ void ImGuiLayer::Begin() {
   ImGuiLayer::End
 ============================================================================
 */
-void ImGuiLayer::End() {
+void ImGuiLayer::End() { // ready to render window
   ImGuiIO     &io  = ImGui::GetIO();
   Application &app = Application::Get();
   io.DisplaySize   = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());

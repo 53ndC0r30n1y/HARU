@@ -3,7 +3,7 @@
  @author  : Merely Reed
  @date    : 2024-08-31 13:53
  @file    : Event.h
- @brief   :
+ @brief   : Abstract class Event
 ===========================================================================
 */
 

@@ -3,7 +3,7 @@
  @author  : Merely Reed
  @date    : 2024-08-31 13:53
  @file    : Input.h
- @brief   :
+ @brief   : abstract base class of input  
 ===========================================================================
 */
 #ifndef INPUT_H

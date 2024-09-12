@@ -14,7 +14,7 @@
 #include "Haru/Events/MouseEvent.h"
 #include "Harupch.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Haru {
 /***********************************************************************
@@ -66,9 +66,8 @@ void WindowsWindow::Init(const WindowProps &props) {
   }
 
   m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-  glfwMakeContextCurrent(m_Window);
-  int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-  HARU_CORE_ASSERT(status, "Failed to initialize Glad!");
+  m_Context = new OpenGLContext(m_Window);
+  m_Context->Init();
   glfwSetWindowUserPointer(m_Window, &m_Data);
   SetVSync(true);
 
@@ -166,7 +165,7 @@ void WindowsWindow::Shutdown() { glfwDestroyWindow(m_Window); }
 */
 void WindowsWindow::OnUpdate() {
   glfwPollEvents();
-  glfwSwapBuffers(m_Window);
+  m_Context->SwapBuffers();
 }
 /*
 ============================================================================
